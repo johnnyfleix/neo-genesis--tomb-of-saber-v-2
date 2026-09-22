@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://kyeah81icjau"]
+
+[ext_resource type="Script" uid="uid://d8y23w54bpf0" path="res://entities/items/gems/common/emerald/emerald.gd" id="1_1y3l8"]
+[ext_resource type="Texture2D" uid="uid://cjnk2hayk5p36" path="res://entities/items/gems/assets/prototype/gold_1.png" id="2_e0wms"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0u1qw"]
+radius = 42.190044
+
+[node name="Emerald" type="Area2D" unique_id=243594169]
+collision_layer = 1024
+collision_mask = 2
+script = ExtResource("1_1y3l8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=431506782]
+modulate = Color(0, 1, 1, 1)
+texture = ExtResource("2_e0wms")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=684664310]
+visible = false
+shape = SubResource("CircleShape2D_0u1qw")
+debug_color = Color(0.3137255, 0.78431374, 0.47058824, 0.43137255)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

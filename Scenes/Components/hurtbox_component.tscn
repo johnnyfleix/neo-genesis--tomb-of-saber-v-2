@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c4jiynkip5p4n"]
+
+[ext_resource type="Script" uid="uid://cemrc262ufx31" path="res://Scripts/Components/hurtbox_component.gd" id="1_leg2g"]
+
+[node name="HurtboxComponent" type="Area2D" unique_id=1325857055 node_paths=PackedStringArray("invulnerability_timer")]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_leg2g")
+invulnerability_timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="." unique_id=1790618538]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

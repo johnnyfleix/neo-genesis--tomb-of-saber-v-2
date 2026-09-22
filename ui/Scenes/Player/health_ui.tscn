@@ -1,0 +1,184 @@
+[gd_scene format=3 uid="uid://deqk7gaacfktm"]
+
+[ext_resource type="Script" uid="uid://b2upq0f8wp4kh" path="res://Scripts/UI/player_hud/health/health_ui.gd" id="1_fshfv"]
+[ext_resource type="Script" uid="uid://bm6atoefxwwlw" path="res://Scripts/UI/player_hud/GemCounter/gem_display.gd" id="2_8row0"]
+[ext_resource type="Texture2D" uid="uid://cjnk2hayk5p36" path="res://entities/items/gems/assets/prototype/gold_1.png" id="2_ar8fh"]
+[ext_resource type="FontFile" uid="uid://dmldg76xpm20p" path="res://Assets/Fonts/C059-Bold.otf" id="3_306ul"]
+[ext_resource type="Script" uid="uid://htmio8e1l25p" path="res://Singleton/TutorialHints.gd" id="5_5w0tf"]
+[ext_resource type="Script" uid="uid://crn2plssvct0s" path="res://Scripts/UI/player_hud/DashCounterDisp/dash_counter_display.gd" id="6_n4jd3"]
+[ext_resource type="PackedScene" uid="uid://coleq14iinqg" path="res://Scenes/Components/health_component.tscn" id="7_n4jd3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5w0tf"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 1114.0
+bg_color = Color(0, 0, 0, 0.31764707)
+border_width_left = 16
+border_width_top = 8
+border_width_right = 16
+border_width_bottom = 4
+border_blend = true
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[node name="HealthUI" type="CanvasLayer" unique_id=1138416780 node_paths=PackedStringArray("health_manager")]
+script = ExtResource("1_fshfv")
+health_manager = NodePath("HealthComponent")
+
+[node name="Container" type="Node2D" parent="." unique_id=514034522]
+position = Vector2(113, 117)
+
+[node name="GemDisplay" type="Control" parent="." unique_id=1154538973]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 88.0
+offset_top = 94.0
+offset_right = 128.0
+offset_bottom = 134.0
+script = ExtResource("2_8row0")
+
+[node name="GemIcon" type="TextureRect" parent="GemDisplay" unique_id=1422780041]
+texture_filter = 2
+layout_mode = 0
+offset_left = -17.0
+offset_top = 77.0
+offset_right = 67.0
+offset_bottom = 161.0
+texture = ExtResource("2_ar8fh")
+stretch_mode = 3
+
+[node name="TotalGemCount" type="Label" parent="GemDisplay" unique_id=55978573]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 105.0
+offset_right = 131.0
+offset_bottom = 170.0
+theme_override_fonts/font = ExtResource("3_306ul")
+theme_override_font_sizes/font_size = 64
+text = "x"
+
+[node name="TutorialContainer" type="Control" parent="." unique_id=1717362956 groups=["TutorialHint"]]
+layout_mode = 3
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("5_5w0tf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialContainer" unique_id=1536211579]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -200.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 1
+
+[node name="KeyPanel" type="Panel" parent="TutorialContainer/HBoxContainer" unique_id=357497771]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_5w0tf")
+
+[node name="KeyLabel" type="Label" parent="TutorialContainer/HBoxContainer/KeyPanel" unique_id=1369299211]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0.56078434, 0.11372549, 1)
+theme_override_fonts/font = ExtResource("3_306ul")
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="ActionLabel" type="Label" parent="TutorialContainer/HBoxContainer/KeyPanel" unique_id=148377883]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_306ul")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+clip_text = true
+
+[node name="DashCounterDisplay" type="Control" parent="." unique_id=1086300886]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 87.0
+offset_top = 290.0
+offset_right = 127.0
+offset_bottom = 330.0
+script = ExtResource("6_n4jd3")
+
+[node name="RemainingDash" type="Label" parent="DashCounterDisplay" unique_id=1255323947]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 50.0
+offset_right = 128.0
+offset_bottom = 115.0
+theme_override_fonts/font = ExtResource("3_306ul")
+theme_override_font_sizes/font_size = 64
+text = "x"
+
+[node name="AppreciationMsg" type="Control" parent="." unique_id=257570916 groups=["thank_you"]]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="AppreciationMsg" unique_id=1644540869]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="AppreciationMsg/Panel" unique_id=1060118819]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -317.0
+offset_top = -32.5
+offset_right = 317.0
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_306ul")
+theme_override_font_sizes/font_size = 64
+text = "Thanks for playing
+this game will be updated soon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthComponent" parent="." unique_id=1960162446 instance=ExtResource("7_n4jd3")]

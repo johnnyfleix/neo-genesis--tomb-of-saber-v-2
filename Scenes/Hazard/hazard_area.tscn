@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cy3tiiu85t1el"]
+
+[ext_resource type="Script" uid="uid://bfrvstqrspaju" path="res://Scripts/Hazard/hazard_area.gd" id="1_x5bmo"]
+
+[node name="HazardArea" type="Area2D" unique_id=879992377]
+script = ExtResource("1_x5bmo")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

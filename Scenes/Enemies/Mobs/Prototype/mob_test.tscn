@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bjsrbl6dio8mc"]
+
+[ext_resource type="PackedScene" uid="uid://coleq14iinqg" path="res://Scenes/Components/health_component.tscn" id="1_7p3og"]
+[ext_resource type="Texture2D" uid="uid://b1sc0hl78xepc" path="res://icon.svg" id="1_ylmvx"]
+[ext_resource type="PackedScene" uid="uid://c4jiynkip5p4n" path="res://Scenes/Components/hurtbox_component.tscn" id="2_cecmr"]
+[ext_resource type="PackedScene" uid="uid://dfrdnv6c6g1es" path="res://Scenes/Components/death_component.tscn" id="3_8rect"]
+[ext_resource type="Script" uid="uid://b7ow4pp6ji6il" path="res://Scripts/Components/knockback_component.gd" id="4_xr4o0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xr4o0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fopq5"]
+radius = 14.0
+height = 44.0
+
+[node name="MobTest" type="CharacterBody2D" unique_id=386293606]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=808702257]
+position = Vector2(50, 0)
+shape = SubResource("RectangleShape2D_xr4o0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=855482726]
+position = Vector2(50.5, 0)
+scale = Vector2(0.2109375, 0.375)
+texture = ExtResource("1_ylmvx")
+
+[node name="Components" type="Node2D" parent="." unique_id=829040812]
+
+[node name="HealthComponent" parent="Components" unique_id=1960162446 instance=ExtResource("1_7p3og")]
+
+[node name="HurtboxComponent" parent="Components" unique_id=1325857055 node_paths=PackedStringArray("health", "knockback") instance=ExtResource("2_cecmr")]
+health = NodePath("../HealthComponent")
+knockback = NodePath("../KnockbackComponent")
+invulnerability_time = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/HurtboxComponent" unique_id=467351617]
+position = Vector2(50, 0)
+shape = SubResource("CapsuleShape2D_fopq5")
+
+[node name="KnockbackComponent" type="Node" parent="Components" unique_id=569120093]
+script = ExtResource("4_xr4o0")
+metadata/_custom_type_script = "uid://b7ow4pp6ji6il"
+
+[node name="DeathComponent" parent="Components" unique_id=762555002 node_paths=PackedStringArray("target", "health") instance=ExtResource("3_8rect")]
+target = NodePath("../..")
+health = NodePath("../HealthComponent")
+disable_and_queue_free = true
+cleanup_delay = 2.0

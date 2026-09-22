@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c2u6d3bj3kmv6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_27xog"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fopq5"]
+
+[node name="JumpPlatform" type="AnimatableBody2D" unique_id=1706818079]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1130579174]
+shape = SubResource("RectangleShape2D_27xog")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=596178616]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=998840611]
+shape = SubResource("CircleShape2D_fopq5")

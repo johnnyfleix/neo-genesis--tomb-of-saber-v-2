@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bn8p8o6dag6j"]
+
+[ext_resource type="Script" uid="uid://cynfbmowrj72q" path="res://Scripts/Components/checkpoint.gd" id="1_oie4y"]
+
+[node name="Checkpoint" type="Area2D" unique_id=1698531055 node_paths=PackedStringArray("spawn_point")]
+script = ExtResource("1_oie4y")
+spawn_point = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=421566023]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

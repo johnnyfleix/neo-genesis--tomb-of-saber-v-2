@@ -1,0 +1,112 @@
+extends Node2D
+
+@onready var shell_sprite: Sprite2D = $ShellSprite
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+
+func _ready() -> void:
+	# Connect to the health component's signals
+	if health_component:
+		health_component.health_changed.connect(_on_health_changed)
+		health_component.max_health_changed.connect(_on_max_health_changed)
+		health_component.died.connect(_on_died)
+		health_component.hurt.connect(_on_hurt)
+		
+		# Initialize the shell state
+		_on_max_health_changed(health_component.max_hp)
+		_on_health_changed(health_component.current_hp, health_component.max_hp)
+
+
+func _on_health_changed(current: float, max: float) -> void:
+	# Calculate the health percentage
+	var health_percentage = current / max
+	
+	# Update the shell's animation based on health percentage
+	if health_percentage >= 0.75:
+		animation_player.play("health_full")
+	elif health_percentage >= 0.4:
+		animation_player.play("health_cracked")
+	else:
+		animation_player.play("health_broken")
+
+
+func _on_max_health_changed(new_max: float) -> void:
+	# Update the shell's animation based on the new max health
+	_on_health_changed(health_component.current_hp, new_max)
+
+
+func _on_died() -> void:
+	# Play the death animation
+	animation_player.play("health_broken")
+
+
+func _on_hurt(amount: float) -> void:
+	# Play the hurt animation
+	animation_player.play("health_cracked")
+
+
+extends CanvasLayer
+
+@export var shell_scene: PackedScene = preload("res://ui/HealthShell.tscn")  # ← adjust path if needed
+
+@onready var container: HBoxContainer = $ShellContainer
+
+var shells: Array[Node2D] = []  # will hold references to each HealthShell instance
+
+# Reference to your HealthComponent (adjust path!)
+@onready var health: HealthComponent = get_node("/root/Player/HealthComponent")  # ← CHANGE THIS TO YOUR ACTUAL PATH
+
+func _ready() -> void:
+    if not health:
+        push_error("HealthComponent not found! Check path.")
+        return
+    
+    # Connect signals
+    health.health_changed.connect(_on_health_changed)
+    # If you added max_health_changed signal earlier, connect it too:
+    # health.max_health_changed.connect(_on_max_health_changed)
+    
+    # Initial setup
+    update_shell_count(health.max_hp)
+    update_shell_states(health.current_hp, health.max_hp)
+
+
+func update_shell_count(max_hp: float) -> void:
+    var target_count = int(ceil(max_hp))  # e.g. 5.3 → 6 shells
+    
+    # Add new shells if needed
+    while shells.size() < target_count:
+        var new_shell = shell_scene.instantiate() as Node2D
+        container.add_child(new_shell)
+        shells.append(new_shell)
+        # New shells start full (no animation for clean look)
+        new_shell.set_state(HealthShell.ShellState.FULL)
+    
+    # Remove extra shells if max_hp decreased (rare, but safe)
+    while shells.size() > target_count:
+        var old_shell = shells.pop_back()
+        old_shell.queue_free()
+
+
+func update_shell_states(current: float, maxx: float) -> void:
+    var full_count = int(floor(current))
+    var fractional = current - full_count
+    
+    for i in shells.size():
+        if i < full_count:
+            shells[i].set_state(HealthShell.ShellState.FULL)
+        elif i == full_count and fractional > 0.0:
+            shells[i].set_state(HealthShell.ShellState.CRACKED)
+        else:
+            shells[i].set_state(HealthShell.ShellState.BLANK)
+
+
+# Signal callbacks
+func _on_health_changed(current: float, maxx: float) -> void:
+    update_shell_states(current, maxx)
+
+
+# Optional: if you add a max_health_changed signal later
+# func _on_max_health_changed(new_max: float) -> void:
+#     update_shell_count(new_max)
+#     update_shell_states(health.current_hp, new_max)

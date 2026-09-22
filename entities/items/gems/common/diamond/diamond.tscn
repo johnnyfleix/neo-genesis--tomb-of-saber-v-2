@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dq1iq0q6yt728"]
+
+[ext_resource type="Script" uid="uid://c130uvyj1tdee" path="res://entities/items/gems/common/diamond/diamond.gd" id="1_bb5v1"]
+[ext_resource type="Texture2D" uid="uid://cjnk2hayk5p36" path="res://entities/items/gems/assets/prototype/gold_1.png" id="2_jt27l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lt5l3"]
+
+[node name="Diamond" type="Area2D" unique_id=203109758]
+scale = Vector2(1, 1.12)
+collision_layer = 2048
+collision_mask = 2
+script = ExtResource("1_bb5v1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=864361105]
+modulate = Color(0.6205341, 0.99999994, 0.19440863, 1)
+scale = Vector2(0.52, 1)
+texture = ExtResource("2_jt27l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=600292810]
+scale = Vector2(2.52, 3.52)
+shape = SubResource("CircleShape2D_lt5l3")
+debug_color = Color(0.7176471, 0.94509804, 0.99215686, 0.41568628)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

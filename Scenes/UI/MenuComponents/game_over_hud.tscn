@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://diukfcotkfms5"]
+
+[ext_resource type="Script" uid="uid://1be2quvtbt0r" path="res://Scripts/UI/player_hud/MenuComponents/game_over_hud.gd" id="1_caomt"]
+
+[node name="GameOverHud" type="CanvasLayer" unique_id=57714075 node_paths=PackedStringArray("color_rect")]
+script = ExtResource("1_caomt")
+color_rect = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1595741081]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

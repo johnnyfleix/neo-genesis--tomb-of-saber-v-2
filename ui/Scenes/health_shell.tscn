@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://d1q7xxwpwungp"]
+
+[ext_resource type="Script" uid="uid://biglegstcexxr" path="res://ui/Scenes/note/note.gd" id="1_nrjvv"]
+[ext_resource type="Script" uid="uid://bahr6hn715je8" path="res://Scripts/UI/player_hud/health/health_shell.gd" id="1_uhlm2"]
+[ext_resource type="Texture2D" uid="uid://dowcktvvpyp40" path="res://ui/PNGs/health_state/health_full.png" id="2_nrjvv"]
+
+[sub_resource type="Animation" id="Animation_nrjvv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShellSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w2a5d"]
+resource_name = "break_transition"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.15, 1.15), Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.7, 0.7, 0.7, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShellSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.23333333, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-0.8955224, -56.417908), Vector2(-0.8955224, 92.647064), Vector2(0, -9.712231), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_egw2w"]
+resource_name = "cracked_shake"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShellSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-4, 2), Vector2(3, -3), Vector2(-2, 1), Vector2(0, 0), Vector2(1.5, -1.5), Vector2(0.75, -0.75), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uhlm2"]
+resource_name = "full_idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.07, 1.07), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.9, 0.9, 0.9, 1), Color(1.1, 1.1, 1.1, 1), Color(0.9, 0.9, 0.9, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nrjvv"]
+_data = {
+&"RESET": SubResource("Animation_nrjvv"),
+&"break_transition": SubResource("Animation_w2a5d"),
+&"cracked_shake": SubResource("Animation_egw2w"),
+&"full_idle": SubResource("Animation_uhlm2")
+}
+
+[node name="HealthShell" type="Node2D" unique_id=31022687]
+script = ExtResource("1_uhlm2")
+
+[node name="ShellSprite" type="Sprite2D" parent="." unique_id=1395738731]
+texture = ExtResource("2_nrjvv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1150814993]
+libraries/ = SubResource("AnimationLibrary_nrjvv")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1284088781]
+script = ExtResource("1_nrjvv")

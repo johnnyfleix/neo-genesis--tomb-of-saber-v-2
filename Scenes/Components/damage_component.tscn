@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://f0gqd5gea0qp"]
+
+[ext_resource type="Script" uid="uid://ctvxteukjgxkq" path="res://Scripts/Components/damage_component.gd" id="1_dh41h"]
+
+[node name="DamageComponent" type="Area2D" unique_id=792827340 node_paths=PackedStringArray("damage_cooldown")]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_dh41h")
+damage_cooldown = NodePath("DamageCooldown")
+
+[node name="DamageCooldown" type="Timer" parent="." unique_id=765993417]
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="DamageCooldown" to="." method="_on_damage_cooldown_timeout"]

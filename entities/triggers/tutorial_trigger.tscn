@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://kf4ylw6eh54o"]
+
+[ext_resource type="Script" uid="uid://cpvl0b1i7bwco" path="res://entities/triggers/tutorial_trigger.gd" id="1_5tkwv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfskq"]
+size = Vector2(422.71432, 11)
+
+[node name="TutorialTrigger" type="Area2D" unique_id=813525901]
+collision_layer = 4096
+collision_mask = 2
+script = ExtResource("1_5tkwv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1428465214]
+position = Vector2(493.79413, 5.5)
+scale = Vector2(2.8823528, 1)
+shape = SubResource("RectangleShape2D_dfskq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

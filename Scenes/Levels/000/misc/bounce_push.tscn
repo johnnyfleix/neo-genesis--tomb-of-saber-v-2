@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b0fvh50wxquq"]
+
+[ext_resource type="Script" uid="uid://w5vfgw0g570y" path="res://Scripts/Levels/000/bounce_push.gd" id="1_olbka"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aqxyi"]
+radius = 50.0
+
+[node name="BouncePush" type="Area2D" unique_id=682034006]
+script = ExtResource("1_olbka")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584953336]
+shape = SubResource("CircleShape2D_aqxyi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
