@@ -42,6 +42,9 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(&"StopState")
 		return
 
+	if Input.is_action_just_pressed("dash"):
+		state_machine.transition_to(&"DashState")
+
 	# Fresh direction press triggers a run
 	if Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_left"):
 		state_machine.transition_to(&"RunState")

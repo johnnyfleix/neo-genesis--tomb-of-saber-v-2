@@ -38,14 +38,28 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(&"KnockbackState")
 		return
 
+	if Input.is_action_just_pressed("dash"):
+		state_machine.transition_to(&"DashState")
+	
+	if input.float_input() and player.velocity.y > 0.0:
+	# Transition to glide state when falling and float key is held
+		if player.ability_manager and player.ability_manager.is_ability_ready("glide"):
+			state_machine.transition_to(&"GlideState")
+			return
+
 func post_physics_update(_was_on_floor: bool) -> void:
-	# Detect landing: if grounded after move_and_slide resolves
 	if player.is_on_floor():
+		# Landing on the floor refreshes the air dash charge!
+		if player.ability_manager and player.ability_manager.abilities.has("dash"):
+			var dash := player.ability_manager.abilities["dash"] as DashAbility
+			if dash:
+				dash.replenish_dash()
+
 		player.animation_component.handle_land_animation(true)
 		var input := player.input_component
-		if input.stock_stop_input():
+		if input and input.stock_stop_input():
 			state_machine.transition_to(&"StopState")
-		elif input.stock_horizontal != 0.0:
+		elif input and input.stock_horizontal != 0.0:
 			state_machine.transition_to(&"RunState")
 		else:
 			state_machine.transition_to(&"IdleState")

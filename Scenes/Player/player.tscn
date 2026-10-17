@@ -16,11 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://deqk7gaacfktm" path="res://ui/Scenes/Player/health_ui.tscn" id="13_06tpx"]
 [ext_resource type="PackedScene" uid="uid://c4jiynkip5p4n" path="res://Scenes/Components/hurtbox_component.tscn" id="14_7g0yx"]
 [ext_resource type="PackedScene" uid="uid://doo35fegkfu8a" path="res://Scenes/Components/camera_shake_component.tscn" id="14_ks1b7"]
-[ext_resource type="PackedScene" uid="uid://f0gqd5gea0qp" path="res://Scenes/Components/damage_component.tscn" id="15_dey5f"]
 [ext_resource type="PackedScene" uid="uid://dfrdnv6c6g1es" path="res://Scenes/Components/death_component.tscn" id="16_aqm4k"]
 [ext_resource type="PackedScene" uid="uid://b13hpds31r44k" path="res://Scenes/Components/knockback_component.tscn" id="16_klp0v"]
 [ext_resource type="PackedScene" uid="uid://d0if6m0w7v10y" path="res://Scenes/Components/respawn_component.tscn" id="17_rcvs5"]
 [ext_resource type="PackedScene" uid="uid://diukfcotkfms5" path="res://Scenes/UI/MenuComponents/game_over_hud.tscn" id="18_h8ma5"]
+[ext_resource type="PackedScene" uid="uid://cauqps8fuquc7" path="res://Scenes/Components/attack_component.tscn" id="19_ur3l4"]
 [ext_resource type="Script" uid="uid://bihi6qbrrtxbr" path="res://Scripts/Player/States/StateMachine.gd" id="22_eksi1"]
 [ext_resource type="Script" uid="uid://cxvj821cjbiwt" path="res://Scripts/Player/States/IdleState.gd" id="23_ur3l4"]
 [ext_resource type="Script" uid="uid://boj0txl1xcmut" path="res://Scripts/Player/States/RunState.gd" id="24_2ahak"]
@@ -28,6 +28,13 @@
 [ext_resource type="Script" uid="uid://bu0ysp2s3gwgb" path="res://Scripts/Player/States/AirState.gd" id="26_4no11"]
 [ext_resource type="Script" uid="uid://dg6uk36i8xx8f" path="res://Scripts/Player/States/KnockbackState.gd" id="27_fcwna"]
 [ext_resource type="Script" uid="uid://dnt3fjdq0iaon" path="res://Scripts/Player/States/DeadState.gd" id="28_1agin"]
+[ext_resource type="PackedScene" uid="uid://dr0x1qci8ppcl" path="res://Scripts/Player/Abilities/ability_manager_component.tscn" id="29_2ahak"]
+[ext_resource type="Script" uid="uid://8e5gm8ahb3xk" path="res://Scripts/Player/Abilities/dash_state.gd" id="29_4no11"]
+[ext_resource type="Script" uid="uid://be5x1dms61vby" path="res://Scripts/Player/Abilities/glide_state.gd" id="30_2jnj1"]
+[ext_resource type="PackedScene" uid="uid://btoj256ugtbxd" path="res://Scripts/Player/Abilities/ability_component.tscn" id="30_rukb4"]
+[ext_resource type="Script" uid="uid://cn5cn7uux67t6" path="res://Scripts/Player/Abilities/dash_ability.gd" id="32_fcwna"]
+[ext_resource type="Script" uid="uid://ifm21f2kocuh" path="res://Scripts/Player/Abilities/ability_data.gd" id="33_1agin"]
+[ext_resource type="Script" uid="uid://bfk4dketh0md5" path="res://Scripts/Player/Abilities/glide_ability.gd" id="35_enij7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hnuln"]
 shader = ExtResource("2_hnuln")
@@ -421,42 +428,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ei4d7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ei4d7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ei4d7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ei4d7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ei4d7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ei4d7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ei4d7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ei4d7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ei4d7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ei4d7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ei4d7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ei4d7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ei4d7")
 }],
 "loop": 0,
 "name": &"stock_death",
@@ -771,10 +742,20 @@ radius = 43.046486
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fopq5"]
 size = Vector2(40, 40)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqxyi"]
-size = Vector2(36.75, 61.25)
+[sub_resource type="Resource" id="Resource_1agin"]
+script = ExtResource("33_1agin")
+ability_id = "dash"
+is_unlocked = true
+metadata/_custom_type_script = "uid://ifm21f2kocuh"
 
-[node name="Player" type="CharacterBody2D" unique_id=1443294940 node_paths=PackedStringArray("death_component", "gravity_component", "input_component", "movement_component", "jump_component", "animation_component", "knockback_component", "health_component", "respawn_component", "state_machine") groups=["Stock"]]
+[sub_resource type="Resource" id="Resource_mwii3"]
+script = ExtResource("33_1agin")
+ability_id = "glide"
+is_unlocked = true
+cooldown_time = 0.0
+metadata/_custom_type_script = "uid://ifm21f2kocuh"
+
+[node name="Player" type="CharacterBody2D" unique_id=1443294940 node_paths=PackedStringArray("death_component", "gravity_component", "input_component", "movement_component", "jump_component", "animation_component", "knockback_component", "health_component", "respawn_component", "ability_manager", "state_machine") groups=["Stock"]]
 process_mode = 1
 script = ExtResource("1_htcer")
 death_component = NodePath("Components/DeathComponent")
@@ -786,6 +767,7 @@ animation_component = NodePath("Components/AnimationComponent")
 knockback_component = NodePath("Components/KnockbackComponent")
 health_component = NodePath("Components/HealthComponent")
 respawn_component = NodePath("Components/RespawnComponent")
+ability_manager = NodePath("AbilityManagerComponent")
 state_machine = NodePath("StateMachine")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2021936385]
@@ -813,6 +795,7 @@ default_flash_duration = 0.4
 speed = 600.0
 
 [node name="GravityComponent" parent="Components" unique_id=2135320046 instance=ExtResource("10_7g0yx")]
+float_speed = 100.0
 
 [node name="HealthComponent" parent="Components" unique_id=1960162446 instance=ExtResource("12_oikmp")]
 max_hp = 3.0
@@ -838,14 +821,17 @@ death_component = NodePath("../DeathComponent")
 animation_component = NodePath("../AnimationComponent")
 knockback_component = NodePath("../KnockbackComponent")
 input_component = NodePath("../InputComponent")
+float_speed = 800.0
 
-[node name="GameOverHud" parent="Components" unique_id=57714075 node_paths=PackedStringArray("death_component") instance=ExtResource("18_h8ma5")]
+[node name="GameOverHud" parent="Components" unique_id=57714075 node_paths=PackedStringArray("death_component", "camera") instance=ExtResource("18_h8ma5")]
 death_component = NodePath("../DeathComponent")
+camera = NodePath("../CameraShakeComponent")
+
+[node name="AttackComponent" parent="Components" unique_id=1853996075 instance=ExtResource("19_ur3l4")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=146175177]
 zoom = Vector2(0.69, 0.69)
 position_smoothing_enabled = true
-position_smoothing_speed = 3.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
@@ -861,14 +847,6 @@ animation_component = NodePath("../Components/AnimationComponent")
 position = Vector2(1, 10)
 shape = SubResource("RectangleShape2D_fopq5")
 debug_color = Color(0.99504524, 0.066778585, 3.85046e-07, 0.41960785)
-
-[node name="DamageComponent" parent="." unique_id=792827340 instance=ExtResource("15_dey5f")]
-damage = 5.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageComponent" unique_id=566541681]
-position = Vector2(65.375, 7.625)
-shape = SubResource("RectangleShape2D_aqxyi")
-debug_color = Color(0, 0.6462995, 0.24766219, 0.41960785)
 
 [node name="StateMachine" type="Node" parent="." unique_id=1935216655 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("22_eksi1")
@@ -891,3 +869,27 @@ script = ExtResource("27_fcwna")
 
 [node name="DeadState" type="Node" parent="StateMachine" unique_id=891306776]
 script = ExtResource("28_1agin")
+
+[node name="DashState" type="Node" parent="StateMachine" unique_id=16760383]
+script = ExtResource("29_4no11")
+
+[node name="GlideState" type="Node" parent="StateMachine" unique_id=1562414528]
+script = ExtResource("30_2jnj1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=178916872]
+
+[node name="AbilityManagerComponent" parent="." unique_id=482745161 node_paths=PackedStringArray("player") instance=ExtResource("29_2ahak")]
+player = NodePath("..")
+
+[node name="DashAbility" parent="AbilityManagerComponent" unique_id=870428353 instance=ExtResource("30_rukb4")]
+script = ExtResource("32_fcwna")
+dash_speed = 1200.0
+dash_duration = 0.2
+data = SubResource("Resource_1agin")
+
+[node name="GlideAbility" parent="AbilityManagerComponent" unique_id=1591451432 instance=ExtResource("30_rukb4")]
+script = ExtResource("35_enij7")
+max_fall_speed = 120.0
+gravity_multiplier = 0.25
+glide_speed = 200.0
+data = SubResource("Resource_mwii3")

@@ -72,3 +72,5 @@ func kill() -> void:
 func _input(event: InputEvent) -> void:
     if event.is_action_pressed("ui_focus_next"):
         reset_health()
+    elif event.is_action_pressed("ui_text_backspace"):
+        take_damage(1)

@@ -1,4 +1,3 @@
-# Component responsible for applying horizontal movement and managing character facing orientation.
 class_name MovementComponent
 extends Node
 
@@ -6,8 +5,10 @@ extends Node
 @export var speed: float = 300.0
 
 # Calculates and applies horizontal velocity based on input direction, then updates sprite orientation.
-func handle_horizontal_movement(body: CharacterBody2D, direction: float) -> void:
-	body.velocity.x = direction * speed
+# Pass an optional override_speed (e.g. glide_speed) to use a different speed for specific states.
+func handle_horizontal_movement(body: CharacterBody2D, direction: float, override_speed: float = -1.0) -> void:
+	var move_speed := speed if override_speed < 0.0 else override_speed
+	body.velocity.x = direction * move_speed
 	flip_body(body)
 
 func handle_stop_movement(body: CharacterBody2D, stop_pressed: bool) -> void:

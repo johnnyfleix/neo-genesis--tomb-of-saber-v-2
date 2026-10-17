@@ -42,6 +42,10 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to(&"StopState")
 		return
 
+	if Input.is_action_just_pressed("dash"):
+		state_machine.transition_to(&"DashState")
+		return
+
 func post_physics_update(_was_on_floor: bool) -> void:
 	# Left the floor (jumped or stepped off a ledge)
 	if not player.is_on_floor():

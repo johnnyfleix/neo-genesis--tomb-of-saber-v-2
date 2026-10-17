@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://bjsrbl6dio8mc"]
 
 [ext_resource type="PackedScene" uid="uid://coleq14iinqg" path="res://Scenes/Components/health_component.tscn" id="1_7p3og"]
+[ext_resource type="Script" uid="uid://do2qbtsghraxl" path="res://Scripts/Prototypes/Mob/mob_test.gd" id="1_ixt0g"]
 [ext_resource type="Texture2D" uid="uid://b1sc0hl78xepc" path="res://icon.svg" id="1_ylmvx"]
 [ext_resource type="PackedScene" uid="uid://c4jiynkip5p4n" path="res://Scenes/Components/hurtbox_component.tscn" id="2_cecmr"]
 [ext_resource type="PackedScene" uid="uid://dfrdnv6c6g1es" path="res://Scenes/Components/death_component.tscn" id="3_8rect"]
 [ext_resource type="Script" uid="uid://b7ow4pp6ji6il" path="res://Scripts/Components/knockback_component.gd" id="4_xr4o0"]
+[ext_resource type="PackedScene" uid="uid://cu5pnxs8hd0sp" path="res://Scenes/Components/movement_component.tscn" id="6_74kpp"]
+[ext_resource type="PackedScene" uid="uid://f0gqd5gea0qp" path="res://Scenes/Components/damage_component.tscn" id="7_uh004"]
+[ext_resource type="PackedScene" uid="uid://jvpbw0pm78md" path="res://Scenes/Components/jump_component.tscn" id="8_qc78w"]
+[ext_resource type="PackedScene" uid="uid://ndov6b40ym4a" path="res://Scenes/Components/gravity_component.tscn" id="10_66bxa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr4o0"]
 
@@ -12,7 +17,24 @@
 radius = 14.0
 height = 44.0
 
-[node name="MobTest" type="CharacterBody2D" unique_id=386293606]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fopq5"]
+size = Vector2(20, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qc78w"]
+size = Vector2(1759.25, 112)
+
+[node name="MobTest" type="CharacterBody2D" unique_id=386293606 node_paths=PackedStringArray("death_component", "gravity_component", "movement_component", "jump_component", "knockback_component", "health_component", "chase_area", "player_detector", "ground_detecr", "hazard_detector")]
+script = ExtResource("1_ixt0g")
+death_component = NodePath("Components/DeathComponent")
+gravity_component = NodePath("Components/GravityComponent")
+movement_component = NodePath("Components/MovementComponent")
+jump_component = NodePath("Components/JumpComponent")
+knockback_component = NodePath("Components/KnockbackComponent")
+health_component = NodePath("Components/HealthComponent")
+chase_area = NodePath("ChaseArea")
+player_detector = NodePath("PlayerDetector")
+ground_detecr = NodePath("RayCast2D")
+hazard_detector = NodePath("RayCast2D2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=808702257]
 position = Vector2(50, 0)
@@ -26,6 +48,7 @@ texture = ExtResource("1_ylmvx")
 [node name="Components" type="Node2D" parent="." unique_id=829040812]
 
 [node name="HealthComponent" parent="Components" unique_id=1960162446 instance=ExtResource("1_7p3og")]
+max_hp = 1.0
 
 [node name="HurtboxComponent" parent="Components" unique_id=1325857055 node_paths=PackedStringArray("health", "knockback") instance=ExtResource("2_cecmr")]
 health = NodePath("../HealthComponent")
@@ -45,3 +68,44 @@ target = NodePath("../..")
 health = NodePath("../HealthComponent")
 disable_and_queue_free = true
 cleanup_delay = 2.0
+
+[node name="MovementComponent" parent="Components" unique_id=692728389 instance=ExtResource("6_74kpp")]
+
+[node name="JumpComponent" parent="Components" unique_id=1456866984 instance=ExtResource("8_qc78w")]
+jump_height = -800.0
+
+[node name="DamageComponent" parent="Components" unique_id=792827340 instance=ExtResource("7_uh004")]
+damage = 0.5
+knockback_force = Vector2(7000, 0)
+custom_hitstop_duration = 0.3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/DamageComponent" unique_id=398343814]
+position = Vector2(82, 0)
+shape = SubResource("RectangleShape2D_fopq5")
+debug_color = Color(0.9944673, 0.07099036, 3.85046e-07, 0.41960785)
+
+[node name="GravityComponent" parent="Components" unique_id=2135320046 instance=ExtResource("10_66bxa")]
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1922477059]
+position = Vector2(50, 0)
+target_position = Vector2(54, 38)
+collision_mask = 9
+
+[node name="RayCast2D2" type="RayCast2D" parent="." unique_id=471122345]
+position = Vector2(72, 0)
+target_position = Vector2(26, 0)
+collision_mask = 12
+collide_with_areas = true
+
+[node name="ChaseArea" type="Area2D" parent="." unique_id=1429492931]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseArea" unique_id=14399934]
+position = Vector2(51, -46)
+shape = SubResource("RectangleShape2D_qc78w")
+
+[node name="PlayerDetector" type="RayCast2D" parent="." unique_id=381890916]
+position = Vector2(52, 0)
+target_position = Vector2(506, 0)
+
+[connection signal="body_entered" from="ChaseArea" to="." method="_on_chase_area_body_entered"]
+[connection signal="body_exited" from="ChaseArea" to="." method="_on_chase_area_body_exited"]

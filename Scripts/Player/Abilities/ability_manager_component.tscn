@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dr0x1qci8ppcl"]
+
+[ext_resource type="Script" uid="uid://d31aig2ekgwf5" path="res://Scripts/Player/Abilities/ability_manager_component.gd" id="1_jbubv"]
+
+[node name="AbilityManagerComponent" type="Node" unique_id=482745161]
+script = ExtResource("1_jbubv")

@@ -15,6 +15,7 @@ extends CharacterBody2D
 @export var knockback_component: KnockbackComponent
 @export var health_component: HealthComponent
 @export var respawn_component: RespawnComponent
+@export var ability_manager: AbilityManagerComponent
 
 @export_subgroup("Settings")
 # Collision layer index used for one-way platform drop-through.

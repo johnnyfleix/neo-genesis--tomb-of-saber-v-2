@@ -6,6 +6,7 @@ signal exit_requested
 
 @export var death_component: DeathComponent
 @export var color_rect: ColorRect
+@export var camera: CameraShakeComponent
 
 var is_waiting_for_input: bool = false
 
@@ -19,6 +20,7 @@ func _ready() -> void:
 
 
 func _on_entity_died() -> void:
+    camera.camera.enabled = false
     visible = true
     is_waiting_for_input = true
     print("Game Over: Press 'Y' to Respawn or 'N' to Exit.")
@@ -36,6 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _confirm_respawn() -> void:
     is_waiting_for_input = false
     visible = false
+    camera.camera.enabled = true
     respawn_requested.emit()
     print("Respawn requested.")
 

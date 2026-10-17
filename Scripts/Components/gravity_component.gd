@@ -5,6 +5,7 @@ extends Node
 
 # Gravitational acceleration rate in pixels per second squared.
 @export var gravity: float = 980
+@export var float_speed: float = 490
 
 # Tracks whether the character is currently in a falling state (moving downwards in air).
 var is_falling: bool = false

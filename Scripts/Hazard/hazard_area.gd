@@ -18,7 +18,7 @@ func _on_area_entered(area: Area2D) -> void:
 		var hurtbox = area as HurtboxComponent
 
 		# Apply Damage through HurtboxComponent
-		hurtbox.receive_damage(damage)
+		hurtbox.receive_damage(damage, global_position, Vector2.ZERO, 0.3)
 
 		var targer_node = hurtbox.owner if hurtbox.owner else hurtbox.get_parent()
 		var respawn_comp = targer_node.find_child("RespawnComponent", true, false) as RespawnComponent

@@ -38,6 +38,8 @@ fill_to = Vector2(0.82, 0.18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0xb2"]
 size = Vector2(20, 124)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0xl32"]
+
 [sub_resource type="Gradient" id="Gradient_0xl32"]
 colors = PackedColorArray(1, 1, 1, 1, 0.8782205, 0.8782205, 0.8782205, 0)
 
@@ -50,10 +52,13 @@ fill_from = Vector2(0.5, 0.5)
 size = Vector2(20, 180)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aqxyi"]
-size = Vector2(88, 120)
+size = Vector2(28.090332, 119.22797)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45mwo"]
 size = Vector2(1812.859, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bev6t"]
+radius = 50.0
 
 [node name="Level000" type="Node2D" unique_id=1245836939]
 process_mode = 3
@@ -174,6 +179,39 @@ position = Vector2(-1.0000532, 3.0000083)
 scale = Vector2(7.546871, 0.35937485)
 texture = SubResource("GradientTexture2D_fopq5")
 
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D" unique_id=1939229745]
+position = Vector2(16663, -34.000244)
+rotation = -2.7149885
+scale = Vector2(6.52, 1)
+shape = SubResource("RectangleShape2D_fopq5")
+
+[node name="Sprite2D8" type="Sprite2D" parent="StaticBody2D/CollisionShape2D12" unique_id=1480687416]
+position = Vector2(-1.0000532, 3.0000083)
+scale = Vector2(7.546871, 0.35937485)
+texture = SubResource("GradientTexture2D_fopq5")
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="StaticBody2D" unique_id=166585978]
+position = Vector2(18626, -83)
+rotation = -3.143092
+scale = Vector2(-6.52, 1)
+shape = SubResource("RectangleShape2D_fopq5")
+
+[node name="Sprite2D8" type="Sprite2D" parent="StaticBody2D/CollisionShape2D13" unique_id=1426548316]
+position = Vector2(-1.0000532, 3.0000083)
+scale = Vector2(7.546871, 0.35937485)
+texture = SubResource("GradientTexture2D_fopq5")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="StaticBody2D" unique_id=262345386]
+position = Vector2(24383, 1704)
+rotation = -3.143092
+scale = Vector2(-6.52, 1)
+shape = SubResource("RectangleShape2D_fopq5")
+
+[node name="Sprite2D8" type="Sprite2D" parent="StaticBody2D/CollisionShape2D14" unique_id=1639169124]
+position = Vector2(-1.0000532, 3.0000083)
+scale = Vector2(7.546871, 0.35937485)
+texture = SubResource("GradientTexture2D_fopq5")
+
 [node name="Bounce" type="Area2D" parent="." unique_id=1550211124]
 script = ExtResource("3_wnas2")
 
@@ -229,6 +267,86 @@ shape = SubResource("CircleShape2D_fopq5")
 position = Vector2(0, -1)
 texture = SubResource("GradientTexture2D_2vply")
 
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Bounce" unique_id=763840536]
+position = Vector2(20939, 1613)
+shape = SubResource("CircleShape2D_fopq5")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Bounce/CollisionShape2D8" unique_id=662667745]
+position = Vector2(0, -1)
+texture = SubResource("GradientTexture2D_2vply")
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="Bounce" unique_id=1548726176]
+position = Vector2(20600, 1412)
+shape = SubResource("CircleShape2D_fopq5")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Bounce/CollisionShape2D15" unique_id=2021746822]
+position = Vector2(0, -1)
+texture = SubResource("GradientTexture2D_2vply")
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="Bounce" unique_id=2004730998]
+position = Vector2(20669, 1070)
+shape = SubResource("CircleShape2D_fopq5")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Bounce/CollisionShape2D16" unique_id=1321951321]
+position = Vector2(0, -1)
+texture = SubResource("GradientTexture2D_2vply")
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="Bounce" unique_id=192535556]
+position = Vector2(20540, 797)
+shape = SubResource("CircleShape2D_fopq5")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Bounce/CollisionShape2D17" unique_id=1111835136]
+position = Vector2(0, -1)
+texture = SubResource("GradientTexture2D_2vply")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Bounce" unique_id=1822843239]
+position = Vector2(21215, 1538)
+shape = SubResource("CircleShape2D_fopq5")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Bounce/CollisionShape2D9" unique_id=770118039]
+position = Vector2(0, -1)
+texture = SubResource("GradientTexture2D_2vply")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Bounce" unique_id=66192595]
+position = Vector2(21583, 1726)
+shape = SubResource("CircleShape2D_fopq5")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Bounce/CollisionShape2D10" unique_id=833039610]
+position = Vector2(0, -1)
+texture = SubResource("GradientTexture2D_2vply")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="Bounce" unique_id=1168055578]
+position = Vector2(21825, 1601)
+shape = SubResource("CircleShape2D_fopq5")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Bounce/CollisionShape2D11" unique_id=330492587]
+position = Vector2(0, -1)
+texture = SubResource("GradientTexture2D_2vply")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="Bounce" unique_id=1914534292]
+position = Vector2(22101, 1601)
+shape = SubResource("CircleShape2D_fopq5")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Bounce/CollisionShape2D12" unique_id=1634109539]
+position = Vector2(0, -1)
+texture = SubResource("GradientTexture2D_2vply")
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="Bounce" unique_id=861493807]
+position = Vector2(22349, 1601)
+shape = SubResource("CircleShape2D_fopq5")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Bounce/CollisionShape2D13" unique_id=1623030703]
+position = Vector2(0, -1)
+texture = SubResource("GradientTexture2D_2vply")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="Bounce" unique_id=89999786]
+position = Vector2(22606, 1601)
+shape = SubResource("CircleShape2D_fopq5")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Bounce/CollisionShape2D14" unique_id=869133044]
+position = Vector2(0, -1)
+texture = SubResource("GradientTexture2D_2vply")
+
 [node name="BouncePush" parent="." unique_id=682034006 instance=ExtResource("5_drt6b")]
 position = Vector2(11824, 362)
 
@@ -249,17 +367,22 @@ knockback_force = Vector2(2800, 0)
 custom_hitstop_duration = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spike/DamageComponent2" unique_id=1396411953]
-position = Vector2(8, 72)
+position = Vector2(-316, 155)
 shape = SubResource("RectangleShape2D_b0xb2")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Spike/DamageComponent2" unique_id=1156934022]
-position = Vector2(123, 72)
+position = Vector2(123, 156)
 shape = SubResource("RectangleShape2D_b0xb2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Spike/DamageComponent2" unique_id=606794596]
+position = Vector2(15068, -801)
+shape = SubResource("CircleShape2D_0xl32")
 
 [node name="MobTest" type="Node2D" parent="." unique_id=853490174]
 
-[node name="MobTest" parent="MobTest" unique_id=386293606 instance=ExtResource("7_eo7gt")]
-position = Vector2(627, 1118)
+[node name="MobTest" parent="MobTest" unique_id=386293606 node_paths=PackedStringArray("target") instance=ExtResource("7_eo7gt")]
+position = Vector2(25310, 1653)
+target = NodePath("../../Player")
 
 [node name="PointLight2D" type="Sprite2D" parent="." unique_id=310213915]
 position = Vector2(15212.999, -895)
@@ -282,17 +405,40 @@ position = Vector2(6676, 242)
 position = Vector2(-179, 140)
 shape = SubResource("RectangleShape2D_r1bc6")
 
+[node name="Checkpoint3" parent="CheckpointManager" unique_id=1728248028 instance=ExtResource("9_0xl32")]
+position = Vector2(10258, 251)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint3" unique_id=646472157]
+position = Vector2(-179, 140)
+shape = SubResource("RectangleShape2D_r1bc6")
+
+[node name="Checkpoint4" parent="CheckpointManager" unique_id=2019176752 instance=ExtResource("9_0xl32")]
+position = Vector2(17789, -304)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint4" unique_id=29019783]
+position = Vector2(-179, 140)
+shape = SubResource("RectangleShape2D_r1bc6")
+
+[node name="Checkpoint5" parent="CheckpointManager" unique_id=292998881 instance=ExtResource("9_0xl32")]
+position = Vector2(23071, 1390)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointManager/Checkpoint5" unique_id=2069288167]
+position = Vector2(-179, 140)
+shape = SubResource("RectangleShape2D_r1bc6")
+
 [node name="HazardArea" parent="." unique_id=879992377 instance=ExtResource("8_2vply")]
-position = Vector2(1267, -61)
+position = Vector2(1272.0001, -61)
 scale = Vector2(0.9454303, 1.0797311)
+collision_layer = 8
 collision_mask = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="HazardArea" unique_id=91752668]
-position = Vector2(1701, 1077)
+position = Vector2(223.88245, 1191.0248)
+scale = Vector2(0.40764046, 1.0127892)
 texture = ExtResource("2_5pfy5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" unique_id=1441868629]
-position = Vector2(1705, 1078)
+position = Vector2(226.70154, 1193.2295)
 shape = SubResource("RectangleShape2D_aqxyi")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HazardArea" unique_id=1332545932]
@@ -355,6 +501,10 @@ shape = SubResource("RectangleShape2D_45mwo")
 position = Vector2(14866.247, 304.7055)
 shape = SubResource("RectangleShape2D_45mwo")
 
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="HazardArea" unique_id=875711212]
+position = Vector2(13032.161, 304.7055)
+shape = SubResource("RectangleShape2D_45mwo")
+
 [node name="CollisionShape2D15" type="CollisionShape2D" parent="HazardArea" unique_id=1679370208]
 position = Vector2(15727.23, 387.13342)
 shape = SubResource("RectangleShape2D_45mwo")
@@ -362,6 +512,109 @@ shape = SubResource("RectangleShape2D_45mwo")
 [node name="CollisionShape2D16" type="CollisionShape2D" parent="HazardArea" unique_id=547636312]
 position = Vector2(17543.334, 387.13342)
 shape = SubResource("RectangleShape2D_45mwo")
+
+[node name="CollisionShape2D38" type="CollisionShape2D" parent="HazardArea" unique_id=789950272]
+position = Vector2(19537.137, 1580.023)
+shape = SubResource("RectangleShape2D_45mwo")
+
+[node name="CollisionShape2D39" type="CollisionShape2D" parent="HazardArea" unique_id=1875254435]
+position = Vector2(21235.834, 1997.7197)
+shape = SubResource("RectangleShape2D_45mwo")
+
+[node name="CollisionShape2D44" type="CollisionShape2D" parent="HazardArea" unique_id=2056260773]
+position = Vector2(23082.611, 1997.7197)
+shape = SubResource("RectangleShape2D_45mwo")
+
+[node name="CollisionShape2D43" type="CollisionShape2D" parent="HazardArea" unique_id=108088658]
+position = Vector2(19577.33, 1812.4882)
+shape = SubResource("RectangleShape2D_45mwo")
+
+[node name="CollisionShape2D40" type="CollisionShape2D" parent="HazardArea" unique_id=1673667660]
+position = Vector2(19075.97, 1058.5968)
+shape = SubResource("RectangleShape2D_45mwo")
+
+[node name="CollisionShape2D41" type="CollisionShape2D" parent="HazardArea" unique_id=488272109]
+position = Vector2(21870.465, 188.00977)
+shape = SubResource("RectangleShape2D_45mwo")
+
+[node name="CollisionShape2D42" type="CollisionShape2D" parent="HazardArea" unique_id=494582060]
+position = Vector2(21909.6, 790.9377)
+shape = SubResource("RectangleShape2D_45mwo")
+
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="HazardArea" unique_id=561477384]
+position = Vector2(20252.154, 211.1637)
+shape = SubResource("CircleShape2D_bev6t")
+debug_color = Color(0.9998613, 0, 0.11424684, 0.41960785)
+
+[node name="CollisionShape2D21" type="CollisionShape2D" parent="HazardArea" unique_id=743212463]
+position = Vector2(20749.283, 393.61652)
+shape = SubResource("CircleShape2D_bev6t")
+debug_color = Color(0.9998613, 0, 0.11424684, 0.41960785)
+
+[node name="CollisionShape2D22" type="CollisionShape2D" parent="HazardArea" unique_id=923794435]
+position = Vector2(20318.791, 527.9092)
+shape = SubResource("CircleShape2D_bev6t")
+debug_color = Color(0.9998613, 0, 0.11424684, 0.41960785)
+
+[node name="CollisionShape2D23" type="CollisionShape2D" parent="HazardArea" unique_id=1432247262]
+position = Vector2(20683.705, 652.94037)
+shape = SubResource("CircleShape2D_bev6t")
+debug_color = Color(0.9998613, 0, 0.11424684, 0.41960785)
+
+[node name="CollisionShape2D25" type="CollisionShape2D" parent="HazardArea" unique_id=1369818003]
+position = Vector2(20730.244, 890.0364)
+shape = SubResource("CircleShape2D_bev6t")
+debug_color = Color(0.9998613, 0, 0.11424684, 0.41960785)
+
+[node name="CollisionShape2D27" type="CollisionShape2D" parent="HazardArea" unique_id=469157977]
+position = Vector2(20746.11, 1151.2126)
+shape = SubResource("CircleShape2D_bev6t")
+debug_color = Color(0.9998613, 0, 0.11424684, 0.41960785)
+
+[node name="CollisionShape2D28" type="CollisionShape2D" parent="HazardArea" unique_id=1114941734]
+position = Vector2(20178.113, 1204.0034)
+shape = SubResource("CircleShape2D_bev6t")
+debug_color = Color(0.9998613, 0, 0.11424684, 0.41960785)
+
+[node name="CollisionShape2D30" type="CollisionShape2D" parent="HazardArea" unique_id=1451763771]
+position = Vector2(21964.602, 1278.0961)
+shape = SubResource("CircleShape2D_bev6t")
+debug_color = Color(0.9998613, 0, 0.11424684, 0.41960785)
+
+[node name="CollisionShape2D35" type="CollisionShape2D" parent="HazardArea" unique_id=2145751696]
+position = Vector2(22189.896, 1278.0961)
+shape = SubResource("CircleShape2D_bev6t")
+debug_color = Color(0.9998613, 0, 0.11424684, 0.41960785)
+
+[node name="CollisionShape2D36" type="CollisionShape2D" parent="HazardArea" unique_id=831017440]
+position = Vector2(22412.018, 1278.0961)
+shape = SubResource("CircleShape2D_bev6t")
+debug_color = Color(0.9998613, 0, 0.11424684, 0.41960785)
+
+[node name="CollisionShape2D37" type="CollisionShape2D" parent="HazardArea" unique_id=1176718861]
+position = Vector2(22624.62, 1278.0961)
+shape = SubResource("CircleShape2D_bev6t")
+debug_color = Color(0.9998613, 0, 0.11424684, 0.41960785)
+
+[node name="CollisionShape2D31" type="CollisionShape2D" parent="HazardArea" unique_id=904507277]
+position = Vector2(21997.39, 1725.4296)
+shape = SubResource("CircleShape2D_bev6t")
+debug_color = Color(0.9998613, 0, 0.11424684, 0.41960785)
+
+[node name="CollisionShape2D32" type="CollisionShape2D" parent="HazardArea" unique_id=943622382]
+position = Vector2(22193.068, 1725.4296)
+shape = SubResource("CircleShape2D_bev6t")
+debug_color = Color(0.9998613, 0, 0.11424684, 0.41960785)
+
+[node name="CollisionShape2D33" type="CollisionShape2D" parent="HazardArea" unique_id=230139470]
+position = Vector2(22371.824, 1725.4296)
+shape = SubResource("CircleShape2D_bev6t")
+debug_color = Color(0.9998613, 0, 0.11424684, 0.41960785)
+
+[node name="CollisionShape2D34" type="CollisionShape2D" parent="HazardArea" unique_id=1356285246]
+position = Vector2(22567.502, 1725.4296)
+shape = SubResource("CircleShape2D_bev6t")
+debug_color = Color(0.9998613, 0, 0.11424684, 0.41960785)
 
 [connection signal="body_entered" from="Bounce" to="Bounce" method="_on_body_entered"]
 [connection signal="body_exited" from="Bounce" to="Bounce" method="_on_body_exited"]

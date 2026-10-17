@@ -78,6 +78,18 @@ func handle_land_animation(has_landed: bool) -> void:
 		sprite.play("stock_land")
 		is_landing = true
 
+func handle_float_animation(anim_name: String = "stock_fall") -> void:
+	# Temporarily clear is_dead so sprite.play() isn't blocked
+	is_dead = false
+	is_landing = false
+
+	if sprite and sprite.sprite_frames and sprite.sprite_frames.has_animation(anim_name):
+		sprite.play(anim_name)
+
+	elif sprite:
+		# Fallback to default fall pose if custom name doesn't exist
+		sprite.play("stock_fall")
+
 func reset_animation_state() -> void:
 	is_dead = false
 	is_landing = false

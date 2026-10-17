@@ -50,6 +50,9 @@ func get_stock_move_input() -> float:
 func stock_stop_input() -> bool:
 	return Input.is_action_pressed("stop")
 
+func float_input() -> bool:
+	return Input.is_action_pressed("float")
+
 func reset_input_state() -> void:
 	input_horizontal = 0.0
 	stock_horizontal = 0.0
